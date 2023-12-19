@@ -1,0 +1,232 @@
+Japanese Only (EUC).
+
+　チャレンジ＆レスポンス型認証サーバ（Diffie-Hellman鍵交換対応）
+						                                          Ver. 4.0.0 '11 8/15
+
+                      Copyright (C) 2005 Authd by Fumi.Iseki (TUIS). Subaru Projrct3. 
+                                                 http://www.solar-system.tuis.ac.jp/
+                                                 mailto:iseki@solar-system.tuis.ac.jp
+
+
+
+１．概要
+
+  このプログラムは簡単な認証サービスを提供する．サーバ上で /etc/passwd, /etc/shadow 
+または NIS, LDAP等を使用して認証を行っている場合に，それらの機能を使用してリモートな
+認証確認を行う．
+　また，v4では Windowsの Active Directory(AD)を利用したLDAPを利用することも可能である．
+ADを利用しないLDAPでは，パスワードファイルはシステムからは通常の /etc/shadow として
+見えるので，特に LDAP機能を有効にする必要はない．
+
+  チャレンジ・レスポンス方式によるパスワードのみの暗号化，または Diffie-Hellman 
+の鍵交換方で交換した共通鍵で通信全体を暗号化することができる（あるいはその両方.
+ただしLDAPを利用する場合は，暗号化のみでチャレンジキーは使用しない）．
+DH以後の暗号化手法としては，現在の所 AES128CBC, 3DES3CBC をサポートしいる．
+
+　サーバは最初に起動する場合，DHの秘密鍵を作成するために若干の時間を必要とする．
+2回目以降の起動では，1回目に作成した鍵を使用することができるので，起動を高速化する
+ことができる．
+
+  サーバは接続許可ファイル（デフォルトで /usr/local/etc/authd/authd.allow）を記述する
+ことにより，アクセス制御を行なうことができる．記述方法は一行に1つのIPアドレス
+（サブネット付きまたはCIDR表記可），またはFQDNを指定する．このファイルが存在する場合，
+ファイルに記述されているクライアントからしか，サーバに接続することができない．
+
+・クライアントは下記の５種類が用意されている．
+Linuxコマンド： check_auth
+PAMモジュール:  pam_tuis_auth.so 
+Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
+PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)  
+Java関数：      tuis_utilities_for_java (別パッケージ)
+
+
+Linuxコマンド： check_auth
+　このクライアントを使用して認証を行なった場合，成功すると"ok" を標準出力に出力する．
+ユーザが存在しない場合には "nu"を，認証に失敗した場合は"ng"を，その他のエラーの場合
+には"err"をそれぞれ出力する．
+
+PAMモジュール:  pam_tuis_auth.so 
+　PAM用モジュール．ユーザ認証にのみ使用可能であり，パスワード変更等には対応していない．
+　Linux以外への移植性はそれ程高くない．
+
+Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
+　Perlから呼び出し可能な外部モジュール．移植性はそれ程高くない(Perlのバージョンにも依存)．
+
+PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)
+　PHPから呼び出し可能な外部モジュール．PHPのソースが必要．
+
+Java関数： tuis_utilities_for_java (別パッケージ)
+　このプログラムをダウンロードしたサイト(オリジナルサイト)にアップロードされているはず．  
+
+
+1.5. インストール
+
+ ./configure --enable-debug  --enable-ldap --enable-php --enable-perl
+ make
+
+
+
+
+２．使い方
+
+■ authd: 認証サーバ
+
+authd  [-p port]  [-k keyfile] [-a allowfile] [-f pidfile] [-s] [-m] [-d] [-i] [-n] [-v] [-h]
+
+  port      : ポート番号．デフォルトは 9000
+  keyfile   : DHの秘密キーを保存するファイル名．デフォルトは /usr/local/etc/authd/dhkey
+  allowfile : 接続許可ファイル名． デフォルトは /usr/local/etc/authd/authd.allow
+  pidfile   : プロセスIDファイル名．省略した場合は作成しない．
+   -s       : セキュアモード．通信に必ず暗号化を要求する．
+   -m       : チャレンジキーを交換しないモード．セキュアモードの場合のみ有効．
+   -d       : デバッグモード．デバッグモードでコンパイルしていなくても使用できる．
+   -i       : started by inetd (no daemon mode)
+   -n       : no check mode（必ず認証成功を返す：テスト用）
+   -l       : LDAP機能を利用する．強制的に暗号化モード＆チャレンジキーなしモードになる．
+   -v       : バージョンを表示
+   -h       : ヘルプを表示
+
+
+■ check_auth: 認証クライアント
+
+check_auth  -h host_name[:port] -u userid -p passwd [-s] [-m] [-d] 
+
+  host_name : 認証サーバ名
+  port      : ポート番号．デフォルトは 9000
+  userid    : ユーザID
+  passwd    : パスワード
+   -s       : 通信内容を Diffie-Hellmanで交換した鍵で暗号化(AES128CBC,3DES3CBC)する．
+   -m       : チャレンジキーを交換しないモード．-c が指定された場合のみ有効．
+   -d       : デバッグモード．デバッグモードでコンパイルしていなくても使用できる．
+
+  標準出力　"ok"  : 認証成功．
+　　　　　　"np"  : 認証失敗．パスワードの不一致
+　　　　　　"nu"  : プロトコルエラー．またはユーザが存在しない．
+　　　　　　"err" : その他のエラー
+
+
+■ pam_tuis_auth.so: 認証用PAMモジュール
+
+Linixの場合
+
+  /lib/security にコピーし（make installでコピーされる），/etc/pam.d/system-auth の
+  auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
+       を
+  auth        sufficient    /lib/security/$ISA/pam_tuis_auth.so authd.tuis.ac.jp:9000  on  /lib/security/authd.remote  REMOTE
+
+のように書き換える．
+
+　ここで authd.tuis.ac.jp:9000 は認証サーバのFQDNとポート番号である．また on はチャレンジキーの使用を指定する．
+チャレンジキーを使用しない場合は on 以外の文字列を指定する（例えば off）.
+/lib/security/authd.remote は，このモジュールでの例外ユーザ(後述)を，一行に一ユーザで記述してある．REMOTE は例外ユーザの種類を示す．
+
+例外ユーザ：
+  LOCAL (デフォルト)：ファイルに認証サーバでユーザ認証を行わないユーザ（ローカルユーザ）を記述する
+        それ以外のユーザは，認証サーバで認証を受ける（ただし rootを除く．rootは必ずローカルユーザになる）
+  REMOTE：ファイルに認証サーバでユーザ認証を行なうユーザを記述する．
+        それ以外のユーザは，ローカルな認証を受ける．
+        REMOTE を指定する場合は，必ず手前の引数で例外ユーザを記述したファイルの指定が必要．
+
+  デフォルト（ファイル，REMOTE指定なし）では，root以外の全てのユーザが，認証サーバの認証を受ける．
+  なお rootは上記ファイルにかかわり無く，必ずローカルユーザとなる
+
+  このモジュールは通信を DHキーを利用して必ず暗号化する．暗号化方式は AES128CBC．
+
+注意：
+  PAMの設定に失敗すると rootになれなくなる可能性があるので，必ず rootのシェルを起動した状態でテストを行うこと．
+
+
+■ Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
+
+  use  perl_tuis_auth;
+  $ret = perl_tuis_auth::check_auth("auth_server", port, "userid", "passwd", chmode);
+
+  auth_server: サーバ名
+  port: サーバのポート番号(int)
+  userid: ユーザID
+  passwd: パスワード
+  chmode: チャレンジキーを使用するか？　0: 使用しない． 1: 使用する．
+
+  戻り値  1: 認証成功
+          2: 認証に失敗
+　  　　　3: ユーザが存在しない
+       負数: その他のエラー
+
+  このモジュールは通信を DHキーを利用して必ず暗号化する．暗号化方式は AES128CBC．
+
+
+■ PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)
+
+  dl("php_tuis_auth.so");
+  $ret = tuis_check_auth("auth_server", port, "userid", "passwd", chmode);
+
+  auth_server: サーバ名
+  port: サーバのポート番号(int)
+  userid: ユーザID
+  passwd: パスワード
+  chmode: チャレンジキーを使用するか？　0: 使用しない． 1: 使用する．
+
+  戻り値  1: 認証成功
+          2: 認証に失敗
+  　　　　3: ユーザが存在しない
+       負数: その他のエラー
+
+  このモジュールは通信を DHキーを利用して必ず暗号化する．暗号化方式は AES128CBC．
+
+
+
+３．コンパイル，インストール，設定
+
+  INSTALLファイルを参照のこと．
+
+
+
+４．サーバの起動と停止
+
+  起動：/etc/init.d/authd start
+  停止: /etc/init.d/authd stop
+
+
+
+５．バグ，セキュリティホール，あるいは仕様と称するもの
+　このサーバプログラムには以下の欠点があります．プログラムを使用する場合は，この欠点の意味する
+ところを十分に理解して使用しすること．
+
+5-1.チャレンジキーの交換では，チャレンジキーの半分に UNIX(Linux)側でのsaltキーを使用している．
+    すなわちこれは，チャレンジキーを交換する場合，ユーザにsaltキーが知れてしまうことを意味する．
+	一方，チャレンジキーを使用すれば，サーバに生パスワードを送信しないので，サーバが偽装されても
+　　生パスワードまたは /etc/shadow内の暗号化されたパスワードを盗まれることはない（ただし，簡単な
+　　パスワードの場合はブルートフォースアタックで破られる可能性はある）．
+
+5-2.このサーバはユーザが存在しないときには，チャレンジキーを返さない（またはエラーを返す）．
+　　これは，悪意ある第３者による「ユーザの存在確認」に使用される恐れがある．
+
+
+
+６．ライセンス
+　このプログラムは商用以外ではフリーです．再配布・ライブラリの再利用（改造を含む）は自由ですが，
+再配布する場合は，配布されたものを完全な形で再配布すること．ライブラリの再利用では Copyright
+を明記してください．
+　商用に利用する（このソフトウェアに対して対価を要求する）場合はご連絡ください．
+
+
+
+７．免責
+　このソフトウェアは全くの無保証です．このソフトウェアの使用・改造・再配布に伴い発生する問題に
+関して，作者は一切の責任を負いません．全て自己責任でご使用ください．
+
+
+
+８．謝辞
+  このプログラムは OpenSSL を使用しています．
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit. (http://www.openssl.org/)
+
+  このプログラムは OpenLDAP を使用しています．
+This work is part of OpenLDAP Software <http://www.openldap.org/>.
+
+　PAMのプログラムについては 中島剛志氏のホームページを参考にしました．
+http://dolphin.c.u-tokyo.ac.jp/~naka7/
+
+
+

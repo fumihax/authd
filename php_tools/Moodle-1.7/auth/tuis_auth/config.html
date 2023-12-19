@@ -1,0 +1,69 @@
+<?php 
+
+    if (!isset($config->auth_tuis_host)) {
+        $config->auth_tuis_host = "127.0.0.1";
+    }
+    if (!isset($config->auth_tuis_port)) {
+        $config->auth_tuis_port = "9000";
+    }
+
+	if (!isset($config->auth_tuis_usercreate) or $config->auth_tuis_usercreate==0) {
+		$config->auth_tuis_usercreate = 0;
+		$select0 = "checked";
+		$select1 = "";
+	}
+	else {
+		$select0 = "";
+		$select1 = "checked";
+	}
+?>
+
+<tr valign="top" class="required">
+    <td align="right">auth_tuis_host:</td>
+    <td>
+        <input name="auth_tuis_host" type="text" size="30" value="<?php echo $config->auth_tuis_host?>" />
+    <?php  if (isset($err["auth_tuis_host"])) formerr($err["auth_tuis_host"]); ?>
+    </td>
+    <td>
+    <?php  print_string("auth_tuis_host","auth") ?>
+    </td>
+</tr>
+
+<tr valign="top" class="required">
+    <td align="right">auth_tuis_port:</td>
+    <td>
+    <input name="auth_tuis_port" type="text" size="6" value="<?php echo $config->auth_tuis_port?>" />
+    <?php  if (isset($err["auth_tuis_port"])) formerr($err["auth_tuis_port"]); ?>
+    </td>
+    <td>
+    <?php  print_string("auth_tuis_port","auth") ?>
+    </td>
+</tr>
+
+<tr valign="top" class="required">
+    <td align="right">auth_tuis_usercreate:</td>
+    <td>
+    No<input name="auth_tuis_usercreate" type="radio" value="0" <?php print $select0 ?>/>
+	&nbsp; &nbsp;
+    Yes<input  name="auth_tuis_usercreate" type="radio" value="1" <?php print $select1 ?>/>
+    </td>
+    <td>
+    <?php  print_string("auth_tuis_usercreate","auth") ?>
+    </td>
+</tr>
+
+<tr><td><br/></td></tr>
+
+
+<tr valign="top"> 
+  <td align="right"><p><?php  print_string("instructions", "auth") ?>:</p></td>
+  <td><textarea name="auth_instructions" cols="30" rows="10" wrap="virtual"><?php  p($config->auth_instructions) ?></textarea> 
+  </td>
+  <td> 
+    <?php  print_string("authinstructions","auth") ?>
+    <?php  helpbutton("text", get_string("helptext")) ?>
+  </td>
+</tr>
+
+<?php print_auth_lock_options($auth, $user_fields, get_string('auth_fieldlocks_help', 'auth'), false, false); ?>
+

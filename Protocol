@@ -1,0 +1,66 @@
+/**
+  通信プロトコル例
+
+	SEND  クライアントからサーバへ送られるメッセージ
+	MESG  クライアントがサーバから受信したメッセージ
+    CSEND 暗号化されている場合に，実際にサーバへ送られるメッセージ
+    CMESG 暗号化されている場合に，実際にクライアントが受信したメッセージ
+
+	転送メッセージ単位での改行コード(\r\n)は削除している
+*/
+
+
+１．チャレンジキーを交換しない場合．
+-------------------------------------------------------------------------------------
+ SEND -> [HELLO\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [KEYEX DH\r\n]
+ MESG -> [OK\r\n]
+ MESG -> [MIIBIzCBmQYJKoZIhvcNAQMBMIGLAoGBAJbbdXejVnGDhfbXG0H8ON8f5MImDDGR5PvLyp2TzRYdBCzsr2kpthSrnI/lKu5+/NyX3Nq0qJ5NPGQDcveVA81vCuEnTDjzTmwETLOReuT7ZjiBzFOpjG6RplwAhnbWnf4VEwxweo55PsLObKSWsLqFsmXxKbTBNnWbEwgdrcQbAgECAgID/wOBhAACgYAQbs/aRvU/syPOK4t+uYDaFBrtuIBR6oRPJq34K/PYC80T+2z72naM2YMpmp0TemSNcPTxW8n1h1qucJ+WuSb4gWAGrn7JaxnpGU9aaY1HEwz4nLjejy7wV3nRAEqrY1Hq+Hkn/WNfFUbdQPUebEKjgLtk+RF79PYrducfAYgqHg==\r\nEND\r\n]
+
+ SEND -> [KEYEX SPKI\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [MIIBIzCBmQYJKoZIhvcNAQMBMIGLAoGBAJbbdXejVnGDhfbXG0H8ON8f5MImDDGR5PvLyp2TzRYdBCzsr2kpthSrnI/lKu5+/NyX3Nq0qJ5NPGQDcveVA81vCuEnTDjzTmwETLOReuT7ZjiBzFOpjG6RplwAhnbWnf4VEwxweo55PsLObKSWsLqFsmXxKbTBNnWbEwgdrcQbAgECAgID/wOBhAACgYBxgCjXBOyHupXNmN7Wu1OpjeyLujs1fQxyqcJbE65k5OMw0wzSYMMLPb6Cojg7rxdbOwn5OaVlj2bN0e5xH/rPIm9GadQLaucd5zvQbfQjlDpFjrLnRNbuCQXAugx7GO1Usyl7BbDykriqKwMn1xvQeYSOSGWiTyA6GzIU1xy9/A==\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [KEYEX NOCHLNG]
+ MESG -> [OK\r\n]
+
+ SEND -> [CRYPT AES128CBC\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [USERID xxxxx]
+CSEND -> [Q1B2KLXdKMhfcHS4l0rBwQ==\r\n]
+CMESG -> [2a3myms5UKDKjDVzidz61Q==]
+ MESG -> [OK\r\n]
+
+ SEND -> [PASSWD raw_passwd]
+CSEND -> [KL5N9RsxWQvkv7g2bsLEag==\r\n]
+CMESG -> [2a3myms5UKDKjDVzidz61Q==]
+ MESG -> [OK\r\n]
+
+ SEND -> [BYE]
+CSEND -> [bmJuWVebUoEOaYqao4tt0A==\r\n]
+CMESG -> [2a3myms5UKDKjDVzidz61Q==]
+ MESG -> [OK\r\n]
+
+
+
+
+２．チャレンジキーを交換する場合．
+-------------------------------------------------------------------------------------
+ SEND -> [HELLO\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [USERID xxxxxx\r\n]
+ MESG -> [OK\r\n]
+ MESG -> [$1$LjdHGzLW$\r\n$1$uaTiAS1n$\r\nEND\r\n]
+
+ SEND -> [PASSWD EGXnzsaSyNXln91fXXSZW.\r\n]
+ MESG -> [OK\r\n]
+
+ SEND -> [BYE\r\n]
+ MESG -> [OK\r\n]
+

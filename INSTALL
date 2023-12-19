@@ -1,0 +1,121 @@
+Japanese Only (EUC).
+
+How to INSTALL
+
+  このプログラムをコンパイルするには，JunkBox_Lib が必要である．JunkBox_Lib はこの
+プログラムをダウンロードしたページと同じページで入手できる
+（このソフトウェアに同梱されている場合もある）．
+
+
+0. 準備
+  JunkBox_Lib と Authd を同じディレクトリで展開
+  コンパイルは一般ユーザでも可能だが，インストールは rootになる必要がある．
+  JunkBox_Lib は展開されると，実際のディレクトリの他に JunkBox_Lib というシンボリックリンク
+  も展開される．
+
+  zcat tuis_lib-X.Y.Z.tgz | tar xfv -
+  zcat authd-X.Y.Z.tgz | tar xfv -
+
+
+
+1. JunkBox_Lib のコンパイル
+
+  cd JunkBox_Lib               # シンボリックリンク JunkBox_Lib も展開されるはず
+  ./configure
+  make
+  cd ..
+
+  JunkBox_Lib はインストールする必要はない．
+  configure のオプションなどの詳細は JunkBox_Lib のドキュメントを参照．
+
+
+
+2. Authd のコンパイル 
+
+  cd authd-X.Y.Z
+  ./configure [オプション]
+  make
+  make install
+
+  configure のオプション
+　　--enable-debug    authd を詳細デバッグモードでコンパイル
+
+    --enable-pam      PAMモジュールも作成する．
+
+    --enable-perl     Perlモジュールも作成する．
+
+    --enable-php=DIR  PHPモジュールも作成する．DIRにはPHPのソースのトップディレクトリを指定する．
+　　　　　　　　　　　DIRは必ず指定する．
+
+    --enable-ssl=DIR  システムが openSSLのディレクトリを認識できない場合に手動で指定する．DIRの
+　　　　　　　　　　　ディレクトリのデフォルトは /usr
+
+	--enable-ldap=DIR OpenLDAP機能（ADを利用したLDAPで認証する機能）を有効にする
+                      この場合，JunkBox_Lib も --enable-ldap オプションを付けて configureされていなければならない．
+　　　　　　　　　　　ディレクトリのデフォルトは /usr
+
+
+  インストール (by make install)
+  　　Linuxコマンドは /usr/local/bin にインストールされる．
+　　　また，PAMモジュールは /lib/security にインストールされる．
+　　　Perlモジュールはシステムの専用ディレクトリに自動でインストールされる．
+  　　PHP は make install を行っても自動ではインストールされない．手動でコピーすること．
+ 
+
+2-1. 例）Linuxコマンド＆Perlクライアント（Pelモジュール）のコンパイル
+
+  cd authd-X.Y.Z
+  ./configure --enable-perl
+  make
+  make install
+
+  モジュールは Perlのモジュール用ディレクトリに自動的にインストールされる．
+
+
+2-2. 例）Linuxコマンド＆Perlクライアントのコンパイル．openSSLを手動で指定．
+
+  cd authd-X.Y.Z
+  ./configure --enable-perl --enable-ssl=/usr/local/ssl
+  make
+  make install
+
+  モジュールは Perlのモジュール用ディレクトリに自動的にインストールされる．
+
+
+2-3. 例）Linuxコマンド＆PHPクライアント（PHPモジュール）のコンパイル．
+　　　　 PHPのソースが必要．openSSL を手動で指定．
+
+  cd authd-X.Y.Z
+  ./configure --enable-php=/usr/local/src/php-4.4.2 --enable-ssl
+  make
+  make install
+  cd php
+  cp php_tuis_auth.so anywhere
+
+
+2-4. 例）Linuxコマンド(詳細debugモード) ＆ Perl ＆ PHPクライアント のコンパイル
+　　　　 PHPのソースが必要
+
+  cd authd-X.Y.Z
+  ./configure --enable-debug --enable-perl --enable-ldap --enable-php=/usr/local/src/php-4.4.2
+  make
+  make install
+  cd php
+  cp php_tuis_auth.so anywhere
+
+
+
+3. サーバの設定
+  
+3-1. 起動ファイルの設定
+
+  vi /etc/init.d/authd                           サーバのポート番号や起動オプションを決める 
+  ln -s ../init.d/authd  /etc/rc3.d/S99authd     起動時のランレベルが 3の場合
+
+
+3-2. アクセス制御を行う場合は，アクセス許可ファイルを作成する．ソースの confディレクトリに
+　　サンプルがある．
+
+  vi /usr/local/etc/authd/authd.allow
+
+

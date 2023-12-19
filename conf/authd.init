@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# vi: set tabstop=4:
+#
+
+#
+# for Authd
+#
+
+#ポート番号
+CPORT=9000
+
+#起動オプション
+#OPTIONS=-d
+OPTIONS="-m -s"
+
+
+PROG=authd
+SERVER=/usr/local/bin/authd
+CONFD=/usr/local/etc/authd
+PIDFL=/var/run/${PROG}.pid
+
+
+[ "$SERVER" = "" ] && exit 0
+[ "$PIDFL" = ""  ] && exit 0
+
+[ -x "$SERVER" ] || exit 0
+[ -d "$CONFD"  ] || exit 0
+
+
+PROGRAM="$SERVER -p $CPORT $OPTIONS -f $PIDFL"
+
+
+
+start() {
+	echo "Starting $PROG"
+	$PROGRAM &
+}
+
+stop() {
+	if [ -f $PIDFL ]; then
+		read PID < $PIDFL
+		kill -9 $PID
+		rm -f $PIDFL
+		echo "Shutting down $PROG"
+	else
+		echo "Not Found $PIDFL"
+	fi
+}
+
+restart() {
+	stop
+	sleep 2
+	start
+}	
+
+
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		restart
+		;;
+	*)
+			echo "Usage: $PROG {start|stop|restart}"
+		exit 1
+esac
+
+exit $?
+

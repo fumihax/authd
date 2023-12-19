@@ -1,0 +1,11 @@
+[Unit]
+Description=Auth Daemon by Fumi.Iseki
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=Simple
+ExecStart=/usr/local/bin/authd -p 9000 -l
+
+[Install]
+WantedBy=multi-user.target
+
