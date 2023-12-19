@@ -1,4 +1,4 @@
-/*
+﻿/*
 認証サーバ用 PAM モジュール v1.3
 
 	/etc/pam.d/system-auth

@@ -1,4 +1,4 @@
-
+﻿
 #ifndef _CHECK_AUTH_H
 #define _CHECK_AUTH_H
 

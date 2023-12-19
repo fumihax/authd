@@ -1,4 +1,4 @@
-/*
+﻿/*
   for PHP Version 5/7                                                     |
 */
 

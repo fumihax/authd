@@ -1,4 +1,4 @@
-/* vi:set tabstop=4 noautoindent nocindent: */
+﻿/* vi:set tabstop=4 noautoindent nocindent: */
 
 /** 
 認証サーバ Ver 3.4.0

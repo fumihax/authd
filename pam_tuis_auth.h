@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 参考：http://dolphin.c.u-tokyo.ac.jp/~naka7/pam.html
 */
