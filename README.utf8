@@ -3,9 +3,9 @@ Japanese Only (EUC).
 　チャレンジ＆レスポンス型認証サーバ（Diffie-Hellman鍵交換対応）
 						                                          Ver. 4.0.0 '11 8/15
 
-                      Copyright (C) 2005 Authd by Fumi.Iseki (TUIS). Subaru Projrct3. 
+                      Copyright (C) 2005 Authd by Fumi.Iseki (TUIS). 
                                                  http://www.solar-system.tuis.ac.jp/
-                                                 mailto:iseki@solar-system.tuis.ac.jp
+                                                 mailto:iseki@rsch.tuis.ac.jp
 
 
 
@@ -63,8 +63,6 @@ Java関数： tuis_utilities_for_java (別パッケージ)
 
  ./configure --enable-debug  --enable-ldap --enable-php --enable-perl
  make
-
-
 
 
 ２．使い方
