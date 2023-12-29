@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $string['pluginname'] = 'TUIS Auth';
 
 $string['auth_tuis_authauthtitle'] = 'TUIS Authentication';

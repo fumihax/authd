@@ -1,0 +1,14 @@
+.deps/
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+config.h
+config.log
+config.status
+configure
+perl/perl_tuis_auth/Makefile.old
+php/.deps/
+php/Makefile
+php/Makefile.in
+

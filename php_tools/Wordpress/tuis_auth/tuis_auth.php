@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 Plugin Name: TUIS Auth
 Plugin URI: http://www.nsl.tuis.ac.jp/ 

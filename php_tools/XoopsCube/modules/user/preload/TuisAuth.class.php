@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 //
 // Fumi.Iseki  '09 12/20 
@@ -62,7 +62,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 	function tuisCheckLogin(&$xoopsUser)
 	{
 		if (is_object($xoopsUser)) {
-			return;				// Â¾¤Î´Ø¿ô¤ÇÇ§¾ÚºÑ¤ß
+			return;				// ä»–ã®é–¢æ•°ã§èªè¨¼æ¸ˆã¿
 		}
 
 
@@ -82,11 +82,11 @@ class  User_TuisAuth extends XCube_ActionFilter
 		$passwd = xoops_getrequest('pass');
 		$result = tuis_check_auth(XOOPS_TUIS_AUTH_SERVER, XOOPS_TUIS_AUTH_PORT, $userid, $passwd, 0);
 
-		if ($result==1) {		// ³°Éô¥æ¡¼¥¶
+		if ($result==1) {		// å¤–éƒ¨ãƒ¦ãƒ¼ã‚¶
 			$maddr  = User_TuisAuth::makeMailAddr($userid);
 			$userid = User_TuisAuth::changeUserID($userid);
 		}
-		elseif ($result==2){  	// ³°Éô¥æ¡¼¥¶ ¥Ñ¥¹¥ï¡¼¥É´Ö°ã¤¤
+		elseif ($result==2){  	// å¤–éƒ¨ãƒ¦ãƒ¼ã‚¶ ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰é–“é•ã„
 			$root->mController->executeRedirect(XOOPS_URL, 3, "External User: Login Failed.");
 		}
 		else {
@@ -102,7 +102,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 		$userArr =& $userHandler->getObjects($criteria);
 
 
-		// ¥æ¡¼¥¶ÅÐÏ¿
+		// ãƒ¦ãƒ¼ã‚¶ç™»éŒ²
 		if (count($userArr)==0) {
 			User_TuisAuth::setNewUser($root, $userid, $passwd, $maddr);
 			$userArr =& $userHandler->getObjects($criteria);

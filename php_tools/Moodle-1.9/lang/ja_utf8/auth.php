@@ -1,6 +1,6 @@
-<?php
+ï»¿<?php
 
-$string['auth_tuis_authtitle'] = 'TUIS Ç§¾Ú';
-$string['auth_tuis_authdescription'] = 'TUIS Earth¥·¥¹¥Æ¥à¤È¥Ñ¥¹¥ï¡¼¥É¤òÆ±´ü¤·¤Þ¤¹¡£';
+$string['auth_tuis_authtitle'] = 'TUIS èªè¨¼';
+$string['auth_tuis_authdescription'] = 'TUIS Earthã‚·ã‚¹ãƒ†ãƒ ã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’åŒæœŸã—ã¾ã™ã€‚';
 
 ?>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $string['auth_tuis_authtitle'] 			= 'Use TUIS Authentication server';
 $string['auth_tuis_authdescription'] 	= 'Use TUIS Authd';

@@ -1,15 +1,15 @@
-<?php
+ï»¿<?php
 
-$string['auth_tuis_authtitle'] = 'TUIS Ç§¾Ú';
-$string['auth_tuis_authdescription'] = 'TUIS Earth¥·¥¹¥Æ¥à¤È¥Ñ¥¹¥ï¡¼¥É¤òÆ±´ü¤·¤Þ¤¹¡£';
+$string['auth_tuis_authtitle'] = 'TUIS èªè¨¼';
+$string['auth_tuis_authdescription'] = 'TUIS Earthã‚·ã‚¹ãƒ†ãƒ ã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’åŒæœŸã—ã¾ã™ã€‚';
 
-$string['auth_tuischangepasswordurl_key'] = '¥Ñ¥¹¥ï¡¼¥ÉÊÑ¹¹URI';
-$string['auth_tuisdescription'] = '¤³¤³¤Ç¤Ï¡¢¥æ¡¼¥¶Ì¾¤ª¤è¤Ó¥Ñ¥¹¥ï¡¼¥É¤¬Í­¸ú¤Ç¤¢¤ë¤«³ÎÇ§¤¹¤ë¤¿¤á¡¢TUIS_authd ¥µ¡¼¥Ð¤ò»ÈÍÑ¤·¤Þ¤¹¡£';
-$string['auth_tuishost'] = 'TUIS_authd¥µ¡¼¥Ð¥¢¥É¥ì¥¹¤Ç¤¹¡£';
-$string['auth_tuishost_key'] = '¥Û¥¹¥È';
-$string['auth_tuisnotinstalled'] = 'Tuis_authdÇ§¾Ú¤ò»ÈÍÑ¤Ç¤­¤Þ¤»¤ó¡£PHP tuis_auth¥â¥¸¥å¡¼¥ë¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£';
-$string['auth_tuisport'] = '¥µ¡¼¥Ð¥Ý¡¼¥È';
-$string['auth_tuisport_key'] = '¥Ý¡¼¥È';
-$string['auth_tuistitle'] = 'TUIS_authd¥µ¡¼¥Ð';
+$string['auth_tuischangepasswordurl_key'] = 'ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´URI';
+$string['auth_tuisdescription'] = 'ã“ã“ã§ã¯ã€ãƒ¦ãƒ¼ã‚¶åãŠã‚ˆã³ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæœ‰åŠ¹ã§ã‚ã‚‹ã‹ç¢ºèªã™ã‚‹ãŸã‚ã€TUIS_authd ã‚µãƒ¼ãƒã‚’ä½¿ç”¨ã—ã¾ã™ã€‚';
+$string['auth_tuishost'] = 'TUIS_authdã‚µãƒ¼ãƒã‚¢ãƒ‰ãƒ¬ã‚¹ã§ã™ã€‚';
+$string['auth_tuishost_key'] = 'ãƒ›ã‚¹ãƒˆ';
+$string['auth_tuisnotinstalled'] = 'Tuis_authdèªè¨¼ã‚’ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚PHP tuis_authãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚';
+$string['auth_tuisport'] = 'ã‚µãƒ¼ãƒãƒãƒ¼ãƒˆ';
+$string['auth_tuisport_key'] = 'ãƒãƒ¼ãƒˆ';
+$string['auth_tuistitle'] = 'TUIS_authdã‚µãƒ¼ãƒ';
 
 ?>

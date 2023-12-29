@@ -1,9 +1,9 @@
-<?php
+ï»¿<?php
 
-$string['auth_tuis_authdescription'] = 'TUIS Authd ¤ò»ÈÍÑ¤·¤ÆÇ§¾Ú¤ò¹Ô¤Ê¤¦';
-$string['auth_tuis_authtitle'] = 'TUISÇ§¾Ú¥µ¡¼¥Ð¤ò»ÈÍÑ';
-$string['auth_tuis_host'] = 'Ç§¾Ú¥µ¡¼¥Ð¤Î¥¢¥É¥ì¥¹¤Þ¤¿¤Ï FQDN';
-$string['auth_tuis_port'] = 'Ç§¾Ú¥µ¡¼¥Ð¤Î¥Ý¡¼¥ÈÈÖ¹æ';
-$string['auth_tuis_usercreate'] = 'email ¤Ç¤Î¿·¤·¤¤¥æ¡¼¥¶¤ÎºîÀ®¤òµö²Ä¤¹¤ë';
+$string['auth_tuis_authdescription'] = 'TUIS Authd ã‚’ä½¿ç”¨ã—ã¦èªè¨¼ã‚’è¡Œãªã†';
+$string['auth_tuis_authtitle'] = 'TUISèªè¨¼ã‚µãƒ¼ãƒã‚’ä½¿ç”¨';
+$string['auth_tuis_host'] = 'èªè¨¼ã‚µãƒ¼ãƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ãŸã¯ FQDN';
+$string['auth_tuis_port'] = 'èªè¨¼ã‚µãƒ¼ãƒã®ãƒãƒ¼ãƒˆç•ªå·';
+$string['auth_tuis_usercreate'] = 'email ã§ã®æ–°ã—ã„ãƒ¦ãƒ¼ã‚¶ã®ä½œæˆã‚’è¨±å¯ã™ã‚‹';
 
 ?>
