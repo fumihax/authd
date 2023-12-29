@@ -1,6 +1,4 @@
-# authd
-
-Japanese Only (EUC).
+Japanese Text Only
 
 　チャレンジ＆レスポンス型認証サーバ（Diffie-Hellman鍵交換対応）
 						                                          Ver. 4.0.0 '11 8/15
@@ -10,8 +8,7 @@ Japanese Only (EUC).
                                                  mailto:iseki@rsch.tuis.ac.jp
 
 
-
-１．概要
+1. 概要
 
   このプログラムは簡単な認証サービスを提供する．サーバ上で /etc/passwd, /etc/shadow 
 または NIS, LDAP等を使用して認証を行っている場合に，それらの機能を使用してリモートな
@@ -41,7 +38,6 @@ Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
 PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)  
 Java関数：      tuis_utilities_for_java (別パッケージ)
 
-
 Linuxコマンド： check_auth
 　このクライアントを使用して認証を行なった場合，成功すると"ok" を標準出力に出力する．
 ユーザが存在しない場合には "nu"を，認証に失敗した場合は"ng"を，その他のエラーの場合
@@ -61,13 +57,13 @@ Java関数： tuis_utilities_for_java (別パッケージ)
 　このプログラムをダウンロードしたサイト(オリジナルサイト)にアップロードされているはず．  
 
 
-1.5. インストール
+1-1. インストール
 
  ./configure --enable-debug  --enable-ldap --enable-php --enable-perl
  make
 
 
-２．使い方
+2. 使い方
 
 ■ authd: 認証サーバ
 
@@ -174,22 +170,18 @@ Linixの場合
   このモジュールは通信を DHキーを利用して必ず暗号化する．暗号化方式は AES128CBC．
 
 
-
-３．コンパイル，インストール，設定
+3. コンパイル，インストール，設定
 
   INSTALLファイルを参照のこと．
 
 
-
-４．サーバの起動と停止
+4. サーバの起動と停止
 
   起動：/etc/init.d/authd start
   停止: /etc/init.d/authd stop
 
 
-
-５．バグ，セキュリティホール，あるいは仕様と称するもの
-　このサーバプログラムには以下の欠点があります．プログラムを使用する場合は，この欠点の意味する
+5. このサーバプログラムには以下の欠点があります．プログラムを使用する場合は，この欠点の意味する
 ところを十分に理解して使用しすること．
 
 5-1.チャレンジキーの交換では，チャレンジキーの半分に UNIX(Linux)側でのsaltキーを使用している．
@@ -202,22 +194,16 @@ Linixの場合
 　　これは，悪意ある第３者による「ユーザの存在確認」に使用される恐れがある．
 
 
-
-６．ライセンス
-　このプログラムは商用以外ではフリーです．再配布・ライブラリの再利用（改造を含む）は自由ですが，
-再配布する場合は，配布されたものを完全な形で再配布すること．ライブラリの再利用では Copyright
-を明記してください．
-　商用に利用する（このソフトウェアに対して対価を要求する）場合はご連絡ください．
+6. ライセンス
+  BSD 3-Clause License
 
 
-
-７．免責
+7. 免責
 　このソフトウェアは全くの無保証です．このソフトウェアの使用・改造・再配布に伴い発生する問題に
 関して，作者は一切の責任を負いません．全て自己責任でご使用ください．
 
 
-
-８．謝辞
+8. 謝辞
   このプログラムは OpenSSL を使用しています．
 This product includes software developed by the OpenSSL Project
 for use in the OpenSSL Toolkit. (http://www.openssl.org/)
@@ -226,4 +212,4 @@ for use in the OpenSSL Toolkit. (http://www.openssl.org/)
 This work is part of OpenLDAP Software <http://www.openldap.org/>.
 
 　PAMのプログラムについては 中島剛志氏のホームページを参考にしました．
-http://dolphin.c.u-tokyo.ac.jp/~naka7/
+  http://dolphin.c.u-tokyo.ac.jp/~naka7/
