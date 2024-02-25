@@ -45,6 +45,7 @@ PHP_FUNCTION(check_auth)
 }
 
 
+// for PHP8
 ZEND_BEGIN_ARG_INFO(check_auth_arginfo, 0)
 ZEND_ARG_TYPE_INFO(0, host, IS_STRING, 0)
 ZEND_ARG_TYPE_INFO(0, port, IS_LONG, 1)
@@ -65,7 +66,6 @@ const zend_function_entry php_tuis_auth_functions[] =
     PHP_FE(check_auth, NULL) {NULL, NULL, NULL}
 #endif
 };
-
 
 
 zend_module_entry php_tuis_auth_module_entry =
