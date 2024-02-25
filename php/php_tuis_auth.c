@@ -1,9 +1,8 @@
 ﻿/*
-  for PHP Version 5/7                                                     |
+  for PHP Version 5/7/8
 */
 
 #define PHP_TUIS_AUTH_VERSION "1.0.0" 
-
 
 #include "php.h"
 #include "check_auth_bystr.h"
@@ -20,7 +19,7 @@ PHP_FUNCTION(check_auth)
     char*  pass;
     long   chmode;
 
-#ifdef PHP_FE_END    // for PHP7
+#ifdef PHP_FE_END    // for PHP7/8
     size_t lhost;    // 文字の長さ
     size_t luser;
     size_t lpass;
@@ -46,14 +45,21 @@ PHP_FUNCTION(check_auth)
 }
 
 
+ZEND_BEGIN_ARG_INFO(check_auth_arginfo, 0)
+ZEND_ARG_TYPE_INFO(0, host, IS_STRING, 0)
+ZEND_ARG_TYPE_INFO(0, port, IS_LONG, 1)
+ZEND_ARG_TYPE_INFO(0, user, IS_STRING, 2)
+ZEND_ARG_TYPE_INFO(0, pass, IS_STRING, 3)
+ZEND_ARG_TYPE_INFO(0, chmode, IS_LONG, 4)
+ZEND_END_ARG_INFO()
 
 /*
 関数名は アンダーバー _ が2個の場合は駄目の様 何で？
 */
 const zend_function_entry php_tuis_auth_functions[] =
 {
-#ifdef PHP_FE_END    // for PHP7
-    PHP_FE(check_auth, NULL)
+#ifdef PHP_FE_END    // for PHP7/8
+    PHP_FE(check_auth, check_auth_arginfo)
     PHP_FE_END
 #else
     PHP_FE(check_auth, NULL) {NULL, NULL, NULL}
