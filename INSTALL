@@ -119,3 +119,5 @@ How to INSTALL
   vi /usr/local/etc/authd/authd.allow
 
 
+* Link Error Memo
+  -llber -lldap -L/usr/local/lib64 -lssl -lm -lcrypto -lcrypt -lnsl
