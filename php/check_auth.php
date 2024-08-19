@@ -1,6 +1,6 @@
 ﻿<?php
 
-$host = "202.26.144.41";
+$host = "202.26.144.42";
 $port = "9000";
 $userid = "iseki";
 $pass = "xxxx";
