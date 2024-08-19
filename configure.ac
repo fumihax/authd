@@ -1,10 +1,10 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([authd],[4.1.0],[iseki@solar-system.tuis.ac.jp],[Authd])
 AC_CONFIG_SRCDIR([authd.c])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADER([config.h])
 
 #AM_INIT_AUTOMAKE([authd], [4.0.0], [no-define])
 AM_INIT_AUTOMAKE([subdir-objects])
@@ -146,15 +146,7 @@ AC_CHECK_LIB([socket], [main])
 
 
 # Checks for header files.
-m4_warn([obsolete],
-[The preprocessor macro `STDC_HEADERS' is obsolete.
-  Except in unusual embedded environments, you can safely include all
-  ISO C90 headers unconditionally.])dnl
-# Autoupdate added the next two lines to ensure that your configure
-# script's behavior did not change.  They are probably safe to remove.
-AC_CHECK_INCLUDES_DEFAULT
-AC_PROG_EGREP
-
+AC_HEADER_STDC
 AC_CHECK_HEADERS([pam/pam_appl.h security/pam_appl.h ldap.h openssl/ssl.h locale.h shadow.h string.h syslog.h unistd.h])
 
 
@@ -165,8 +157,7 @@ AC_TYPE_PID_T
 
 # Checks for library functions.
 AC_FUNC_FORK
-m4_warn([obsolete],
-[your code may safely assume C89 semantics that RETSIGTYPE is void.
+AC_DIAGNOSE([obsolete],[your code may safely assume C89 semantics that RETSIGTYPE is void.
 Remove this warning and the `AC_CACHE_CHECK' when you adjust the code.])dnl
 AC_CACHE_CHECK([return type of signal handlers],[ac_cv_type_signal],[AC_COMPILE_IFELSE(
 [AC_LANG_PROGRAM([#include <sys/types.h>
