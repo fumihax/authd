@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.63)
+AC_PREREQ([2.69])
 
 AC_INIT([authd],[4.1.0],[fumi.hax@gmail.com],[Authd])
 AC_CONFIG_SRCDIR([authd.c])
