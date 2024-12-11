@@ -2,6 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
+
 AC_INIT([authd],[4.1.0],[iseki@solar-system.tuis.ac.jp],[Authd])
 AC_CONFIG_SRCDIR([authd.c])
 AC_CONFIG_HEADER([config.h])

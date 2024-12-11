@@ -8,7 +8,13 @@
 #include "check_auth_bystr.h"
 #include "jbxl_state.h"
 
-#define ZTS 
+#if PHP_MAJOR_VERSION >= 7
+  #define PHP_V7
+  #define ZTS
+#endif
+#if PHP_MAJOR_VERSION >= 8
+  #define PHP_V8
+#endif
 
 
 PHP_FUNCTION(check_auth)
@@ -19,7 +25,7 @@ PHP_FUNCTION(check_auth)
     char*  pass;
     long   chmode;
 
-#ifdef PHP_FE_END    // for PHP7/8
+#ifdef PHP_V7        // for PHP7/8
     size_t lhost;    // 文字の長さ
     size_t luser;
     size_t lpass;
@@ -46,6 +52,7 @@ PHP_FUNCTION(check_auth)
 
 
 // for PHP8
+#ifdef PHP_V8
 ZEND_BEGIN_ARG_INFO(check_auth_arginfo, 0)
 ZEND_ARG_TYPE_INFO(0, host, IS_STRING, 0)
 ZEND_ARG_TYPE_INFO(0, port, IS_LONG, 1)
@@ -53,13 +60,15 @@ ZEND_ARG_TYPE_INFO(0, user, IS_STRING, 2)
 ZEND_ARG_TYPE_INFO(0, pass, IS_STRING, 3)
 ZEND_ARG_TYPE_INFO(0, chmode, IS_LONG, 4)
 ZEND_END_ARG_INFO()
+#endif
+
 
 /*
 関数名は アンダーバー _ が2個の場合は駄目の様 何で？
 */
 const zend_function_entry php_tuis_auth_functions[] =
 {
-#ifdef PHP_FE_END    // for PHP7/8
+#ifdef PHP_V7        // for PHP7/8
     PHP_FE(check_auth, check_auth_arginfo)
     PHP_FE_END
 #else
