@@ -3,7 +3,7 @@
 
 	/etc/pam.d/system-auth
 		auth        required      /lib/security/$ISA/pam_env.so
-		auth        sufficient    /lib/security/$ISA/pam_tuis_auth.so authd.tuis.ac.jp:9000
+		auth        sufficient    /lib/security/$ISA/pam_jbxl_auth.so authd.jbxl.ac.jp:9000
 		auth        required      /lib/security/$ISA/pam_deny.so
 		.........
 
@@ -11,7 +11,7 @@
 */
 
 
-#include	"pam_tuis_auth.h"
+#include	"pam_jbxl_auth.h"
 
 
 

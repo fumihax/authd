@@ -11,7 +11,7 @@ LIB_EXT = $(LIB_EXT_DIR)/libextend.a
 
 SUBJ = authd  check_auth 
 if ENABLE_PAM
-    SUBJ += pam_tuis_auth.so
+    SUBJ += pam_jbxl_auth.so
 endif
 
 AM_CFLAGS = -fPIC -W -Wall -I$(LIB_BSC_DIR) -I$(LIB_EXT_DIR)
@@ -26,9 +26,9 @@ authd_LDADD = $(LIB_EXT) $(LIB_BSC)
 check_auth_LDADD = $(LIB_EXT) $(LIB_BSC)
 
 if ENABLE_PAM
-    pam_tuis_auth_so_SOURCES = pam_tuis_auth.c
-    pam_tuis_auth_so_LDADD = $(LIB_EXT) $(LIB_BSC)
-    pam_tuis_auth_so_LDFLAGS = -shared @SSL_LIB_DIR@ @LDAP_LIB_DIR@
+    pam_jbxl_auth_so_SOURCES = pam_jbxl_auth.c
+    pam_jbxl_auth_so_LDADD = $(LIB_EXT) $(LIB_BSC)
+    pam_jbxl_auth_so_LDFLAGS = -shared @SSL_LIB_DIR@ @LDAP_LIB_DIR@
 endif
 
 
@@ -53,7 +53,7 @@ install: $(SUBJ)
 	mkdir -p /usr/local/etc/authd
 	chmod  0700 /usr/local/etc/authd
 if ENABLE_PAM
-	$(INSTALL_PROGRAM) -m 0755 pam_tuis_auth.so /lib/security/
+	$(INSTALL_PROGRAM) -m 0755 pam_jbxl_auth.so /lib/security/
 endif
 if ENABLE_PERL
 	(cd perl && make install)
@@ -102,7 +102,7 @@ DIST_DIR = ../Dist
 DIST_WRK = ../.temp_Dist
 DIST_EXT = tar.gz
 
-EXTRA_DIST = *.c *.h conf php perl perl/perl_tuis_auth perl/perl_tuis_auth/t perl/perl_tuis_auth/lib README.euc Protocol INSTALL
+EXTRA_DIST = *.c *.h conf php perl perl/perl_jbxl_auth perl/perl_jbxl_auth/t perl/perl_jbxl_auth/lib README.euc Protocol INSTALL
 
 PKG_NAME = $(PACKAGE_NAME)-$(PACKAGE_VERSION)
 

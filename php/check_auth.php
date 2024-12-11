@@ -5,8 +5,8 @@ $port = "9000";
 $userid = "iseki";
 $pass = "xxxx";
 
-//dl("/usr/lib64/php/modules/php_tuis_auth.so");
-//dl("php_tuis_auth.so");
+//dl("/usr/lib64/php/modules/php_jbxl_auth.so");
+//dl("php_jbxl_auth.so");
 
 //
 $ret = -1;

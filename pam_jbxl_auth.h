@@ -40,7 +40,7 @@
 #ifdef PAM_STATIC
 
 struct pam_module _pam_easypasswd_modstruct = {
-	"pam_tuis_auth",
+	"pam_jbxl_auth",
 	pam_sm_authenticate,
 	pam_sm_setcred,
 	NULL,

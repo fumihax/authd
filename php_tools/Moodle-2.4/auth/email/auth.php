@@ -36,12 +36,12 @@ class auth_plugin_email extends auth_plugin_base {
         $host = $this->config->host;
         $port = $this->config->port;
 
-        if (!function_exists('tuis_check_auth')) {
+        if (!function_exists('jbxl_check_auth')) {
             return false;
         }
 
         error_reporting(0);
-        $ret = tuis_check_auth($host, $port, $username, "passwd", 0);
+        $ret = jbxl_check_auth($host, $port, $username, "passwd", 0);
         error_reporting($CFG->debug);
 
         if ($ret==2 || $ret==1) {

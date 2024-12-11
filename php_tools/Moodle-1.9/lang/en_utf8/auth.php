@@ -1,6 +1,6 @@
 ﻿<?php
 
-$string['auth_tuis_authtitle'] = 'JBXL Authentication';
-$string['auth_tuis_authdescription'] = 'Synchronize Password with JBXL Earth System';
+$string['auth_jbxl_authtitle'] = 'JBXL Authentication';
+$string['auth_jbxl_authdescription'] = 'Synchronize Password with JBXL Earth System';
 
 ?>

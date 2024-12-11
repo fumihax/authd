@@ -9,14 +9,14 @@ if (!defined('XOOPS_ROOT_PATH')) die();
 
 
 
-class  User_TuisAuth extends XCube_ActionFilter
+class  User_JBXLAuth extends XCube_ActionFilter
 {
 
 	function preBlockFilter()
 	{
 		$root =& XCube_Root::getSingleton();
-		$root->mDelegateManager->add("Site.CheckLogin", "User_TuisAuth::tuisCheckLogin", XCUBE_DELEGATE_PRIORITY_FIRST);
-		$root->mDelegateManager->add("Legacypage.Register.Access", "User_TuisAuth::tuisCheckUser", XCUBE_DELEGATE_PRIORITY_FIRST);
+		$root->mDelegateManager->add("Site.CheckLogin", "User_JBXLAuth::jbxlCheckLogin", XCUBE_DELEGATE_PRIORITY_FIRST);
+		$root->mDelegateManager->add("Legacypage.Register.Access", "User_JBXLAuth::jbxlCheckUser", XCUBE_DELEGATE_PRIORITY_FIRST);
 	}
 
 
@@ -27,7 +27,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 
 
 
-	function tuisCheckUser()
+	function jbxlCheckUser()
 	{
 		$root =& XCube_Root::getSingleton();
 		$xoopsUser =& $root->mContext->mXoopsUser;
@@ -43,12 +43,12 @@ class  User_TuisAuth extends XCube_ActionFilter
 				$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_JBXL_AUTH_* is not defined.");
 			}
 
-			dl("php_tuis_auth.so");
-			if (!function_exists('tuis_check_auth')) {
-				$root->mController->executeRedirect(XOOPS_URL, 3, "php_tuis_asuth.so is not found.");
+			dl("php_jbxl_auth.so");
+			if (!function_exists('jbxl_check_auth')) {
+				$root->mController->executeRedirect(XOOPS_URL, 3, "php_jbxl_asuth.so is not found.");
 			}
 
-			$result = tuis_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, "passwd", 0);
+			$result = jbxl_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, "passwd", 0);
 
 			if ($result==1 or $result==2) {
 				$root->mController->executeRedirect(XOOPS_URL.'/register.php', 3, "User is already exist in External.");
@@ -59,7 +59,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 	}
 
 
-	function tuisCheckLogin(&$xoopsUser)
+	function jbxlCheckLogin(&$xoopsUser)
 	{
 		if (is_object($xoopsUser)) {
 			return;				// 他の関数で認証済み
@@ -72,19 +72,19 @@ class  User_TuisAuth extends XCube_ActionFilter
 			$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_JBXL_AUTH_* is not defined.");
 		}
 
-		dl("php_tuis_auth.so");
-		if (!function_exists('tuis_check_auth')) {
-			$root->mController->executeRedirect(XOOPS_URL, 3, "php_tuis_asuth.so is not found.");
+		dl("php_jbxl_auth.so");
+		if (!function_exists('jbxl_check_auth')) {
+			$root->mController->executeRedirect(XOOPS_URL, 3, "php_jbxl_asuth.so is not found.");
 		}
 
 
 		$userid = strtolower(xoops_getrequest('uname'));
 		$passwd = xoops_getrequest('pass');
-		$result = tuis_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, $passwd, 0);
+		$result = jbxl_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, $passwd, 0);
 
 		if ($result==1) {		// 外部ユーザ
-			$maddr  = User_TuisAuth::makeMailAddr($userid);
-			$userid = User_TuisAuth::changeUserID($userid);
+			$maddr  = User_JBXLAuth::makeMailAddr($userid);
+			$userid = User_JBXLAuth::changeUserID($userid);
 		}
 		elseif ($result==2){  	// 外部ユーザ パスワード間違い
 			$root->mController->executeRedirect(XOOPS_URL, 3, "External User: Login Failed.");
@@ -104,10 +104,10 @@ class  User_TuisAuth extends XCube_ActionFilter
 
 		// ユーザ登録
 		if (count($userArr)==0) {
-			User_TuisAuth::setNewUser($root, $userid, $passwd, $maddr);
+			User_JBXLAuth::setNewUser($root, $userid, $passwd, $maddr);
 			$userArr =& $userHandler->getObjects($criteria);
 			if (count($userArr)==0) return;
-			User_TuisAuth::setUserGroups($userArr[0]->get('uid'));
+			User_JBXLAuth::setUserGroups($userArr[0]->get('uid'));
 		}
 
 		if ($userArr[0]->get('level')==0) return;
@@ -165,7 +165,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 
 	function makeMailAddr($userid)
 	{
-		return $userid.'@edu.tuis.ac.jp';
+		return $userid.'@edu.jbxl.jp';
 	}
 
 

@@ -3,8 +3,8 @@ Japanese Text Only
 　チャレンジ＆レスポンス型認証サーバ（Diffie-Hellman鍵交換対応） Ver. 4.0.0 '11 8/15
 
                       Copyright (C) 2005 Authd by Fumi.Iseki (JBXL). 
-                                                 http://www.nsl.jbxl.ac.jp/
-                                                 mailto:iseki@rsch.jbxl.ac.jp
+                                                 http://polaris.star-dust.jp/
+                                                 mailto:fiseki@star-dust.jp
 
 
 1. 概要
@@ -107,11 +107,11 @@ Linixの場合
   /lib/security にコピーし（make installでコピーされる），/etc/pam.d/system-auth の
   auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
        を
-  auth        sufficient    /lib/security/$ISA/pam_jbxl_auth.so authd.jbxl.ac.jp:9000  on  /lib/security/authd.remote  REMOTE
+  auth        sufficient    /lib/security/$ISA/pam_jbxl_auth.so authd.jbxl.jp:9000  on  /lib/security/authd.remote  REMOTE
 
 のように書き換える．
 
-　ここで authd.jbxl.ac.jp:9000 は認証サーバのFQDNとポート番号である．また on はチャレンジキーの使用を指定する．
+　ここで authd.jbxl.jp:9000 は認証サーバのFQDNとポート番号である．また on はチャレンジキーの使用を指定する．
 チャレンジキーを使用しない場合は on 以外の文字列を指定する（例えば off）.
 /lib/security/authd.remote は，このモジュールでの例外ユーザ(後述)を，一行に一ユーザで記述してある．REMOTE は例外ユーザの種類を示す．
 

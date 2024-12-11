@@ -43,16 +43,15 @@ PHP_FUNCTION(check_auth)
 
     cc = check_auth_bystr(host, (int)port, user, pass, (int)chmode);
     if      (cc==0) ret = 1;
-    else if (cc==JBXL_JBXL_PASSWD_ERROR) ret = 2;
-    else if (cc==JBXL_JBXL_USER_ERROR)   ret = 3;
+    else if (cc==JBXL_ISNET_PASSWD_ERROR) ret = 2;
+    else if (cc==JBXL_ISNET_USER_ERROR)   ret = 3;
     else ret = cc;
 
     RETURN_LONG((long)ret);
 }
 
 
-// for PHP8
-#ifdef PHP_V8
+#ifdef PHP_V7
 ZEND_BEGIN_ARG_INFO(check_auth_arginfo, 0)
 ZEND_ARG_TYPE_INFO(0, host, IS_STRING, 0)
 ZEND_ARG_TYPE_INFO(0, port, IS_LONG, 1)

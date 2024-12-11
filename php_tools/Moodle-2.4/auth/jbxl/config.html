@@ -15,7 +15,7 @@ if (!isset($config->changepasswordurl)) {
 <table cellspacing="0" cellpadding="5" border="0">
 
 <tr valign="top" class="required">
-    <td align="right"><?php print_string('auth_tuishost_key', 'auth_tuis') ?>: </td>
+    <td align="right"><?php print_string('auth_jbxlhost_key', 'auth_jbxl') ?>: </td>
     <td>
         <input name="host" type="text" size="30" value="<?php echo $config->host ?>" />
         <?php
@@ -26,11 +26,11 @@ if (!isset($config->changepasswordurl)) {
 
         ?>
     </td>
-    <td><?php print_string('auth_tuishost', 'auth_tuis'); ?></td>
+    <td><?php print_string('auth_jbxlhost', 'auth_jbxl'); ?></td>
 </tr>
 
 <tr valign="top" class="required">
-    <td align="right"><?php print_string('auth_tuisport_key', 'auth_tuis') ?>: </td>
+    <td align="right"><?php print_string('auth_jbxlport_key', 'auth_jbxl') ?>: </td>
     <td>
         <input name="port" type="text" size="6" value="<?php echo $config->port ?>" />
         <?php
@@ -41,11 +41,11 @@ if (!isset($config->changepasswordurl)) {
 
         ?>
     </td>
-    <td><?php print_string('auth_tuisport', 'auth_tuis') ?></td>
+    <td><?php print_string('auth_jbxlport', 'auth_jbxl') ?></td>
 </tr>
 
 <tr valign="top">
-    <td align="right"><?php print_string('auth_tuischangepasswordurl_key', 'auth_tuis') ?>: </td>
+    <td align="right"><?php print_string('auth_jbxlchangepasswordurl_key', 'auth_jbxl') ?>: </td>
     <td>
         <input name="changepasswordurl" type="text" value="<?php echo $config->changepasswordurl ?>" />
         <?php
@@ -61,7 +61,7 @@ if (!isset($config->changepasswordurl)) {
 
 <?php
 
-print_auth_lock_options('tuis', $user_fields, get_string('auth_fieldlocks_help', 'auth'), false, false);
+print_auth_lock_options('jbxl', $user_fields, get_string('auth_fieldlocks_help', 'auth'), false, false);
 
 ?>
 </table>

@@ -13,7 +13,7 @@ How to INSTALL
   JunkBox_Lib は展開されると，実際のディレクトリの他に JunkBox_Lib というシンボリックリンク
   も展開される．
 
-  zcat tuis_lib-X.Y.Z.tgz | tar xfv -
+  zcat jbxl_lib-X.Y.Z.tgz | tar xfv -
   zcat authd-X.Y.Z.tgz | tar xfv -
 
 
@@ -90,7 +90,7 @@ How to INSTALL
   make
   make install
   cd php
-  cp php_tuis_auth.so anywhere
+  cp php_jbxl_auth.so anywhere
 
 
 2-4. 例）Linuxコマンド(詳細debugモード) ＆ Perl ＆ PHPクライアント のコンパイル
@@ -101,7 +101,7 @@ How to INSTALL
   make
   make install
   cd php
-  cp php_tuis_auth.so anywhere
+  cp php_jbxl_auth.so anywhere
 
 
 

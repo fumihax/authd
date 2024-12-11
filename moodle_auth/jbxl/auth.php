@@ -9,7 +9,7 @@ require_once($CFG->libdir.'/authlib.php');
 
 
 
-class auth_plugin_tuis extends auth_plugin_base {
+class auth_plugin_jbxl extends auth_plugin_base {
 
     var $userfields = array(
         'lastname',
@@ -29,10 +29,10 @@ class auth_plugin_tuis extends auth_plugin_base {
     );
 
 
-    //function auth_plugin_tuis() {
+    //function auth_plugin_jbxl() {
     function __construct() {
-        $this->authtype = 'tuis';
-        $this->config = get_config('auth/tuis');
+        $this->authtype = 'jbxl';
+        $this->config = get_config('auth/jbxl');
     }
 
 
@@ -44,7 +44,7 @@ class auth_plugin_tuis extends auth_plugin_base {
         $port = $this->config->port;
 
         //if (!function_exists('check_auth')) {
-        //    print_error('auth_tuisnotinstalled', 'auth_tuis');
+        //    print_error('auth_jbxlnotinstalled', 'auth_jbxl');
         //    exit;
         //}
         error_reporting(0);
@@ -116,12 +116,12 @@ class auth_plugin_tuis extends auth_plugin_base {
         $host = $this->config->host;
         $port = $this->config->port;
 
-        if (!function_exists('tuis_check_auth')) {
+        if (!function_exists('jbxl_check_auth')) {
             return false;
         }
 
         error_reporting(0);
-        $ret = tuis_check_auth($host, $port, $username, "passwd", 0);
+        $ret = jbxl_check_auth($host, $port, $username, "passwd", 0);
         error_reporting($CFG->debug);
 
         if ($ret==2 || $ret==1) {
@@ -138,11 +138,11 @@ class auth_plugin_tuis extends auth_plugin_base {
 
 
         if (preg_match('/^[a-z]\d\d\d\d\d[a-z][a-z]$/', $username)) {
-        	$usermail = $username.'@edu.tuis.ac.jp';
+        	$usermail = $username.'@edu.jbxl.jp';
             $username = substr($username, 0, 6);
         }
 		else {
-        	$usermail = $username.'@rsch.tuis.ac.jp';
+        	$usermail = $username.'@rsch.jbxl.jp';
 		}
 /*
         'lastname',
@@ -251,20 +251,20 @@ class auth_plugin_tuis extends auth_plugin_base {
         }
 
         // save settings
-        set_config('host', $config->host, 'auth/tuis');
-        set_config('port', $config->port, 'auth/tuis');
-        set_config('changepasswordurl', $config->changepasswordurl, 'auth/tuis');
+        set_config('host', $config->host, 'auth/jbxl');
+        set_config('port', $config->port, 'auth/jbxl');
+        set_config('changepasswordurl', $config->changepasswordurl, 'auth/jbxl');
 
         return true;
     }
 
 
     function get_title() {
-        return get_string("auth_tuisauthtitle", "auth_tuis");
+        return get_string("auth_jbxlauthtitle", "auth_jbxl");
     }
 
 
     function get_description() {
-        return get_string("auth_tuisauthdescription", "auth_tuis");
+        return get_string("auth_jbxlauthdescription", "auth_jbxl");
     }
 }

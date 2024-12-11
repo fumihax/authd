@@ -18,9 +18,8 @@
  * Version details
  *
  * @package    auth
- * @subpackage tuis_aurh
+ * @subpackage jbxl_aurh
  * @copyright  Fumi.Iseki (c)
- * @license    http://www.nsl.tuis.ac.jp
  */
 
 defined('MOODLE_INTERNAL') || die;
@@ -28,4 +27,4 @@ defined('MOODLE_INTERNAL') || die;
 $plugin->version   = 2023032200;        // The current plugin version (Date: YYYYMMDDXX)
 //$plugin->version = 2013031300;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires  = 2012120300;        // Requires this Moodle version
-$plugin->component = 'auth_tuis';  		// Full name of the plugin (used for diagnostics)
+$plugin->component = 'auth_jbxl';  		// Full name of the plugin (used for diagnostics)
