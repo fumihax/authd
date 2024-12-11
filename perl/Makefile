@@ -1,10 +1,10 @@
 # vi: set tabstop=4 nocindent paste: 
 
 
-VERSION = 1.2
+VERSION = 1.2.1
 
 
-PERL_MODNAME = perl_tuis_auth
+PERL_MODNAME = perl_jbxl_auth
 
 
 #

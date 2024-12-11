@@ -1,8 +1,0 @@
-Changes
-Makefile.PL
-MANIFEST
-perl_tuis_auth.xs
-ppport.h
-README
-t/perl_tuis_auth.t
-lib/perl_tuis_auth.pm

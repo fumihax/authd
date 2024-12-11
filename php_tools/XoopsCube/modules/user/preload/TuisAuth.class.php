@@ -39,8 +39,8 @@ class  User_TuisAuth extends XCube_ActionFilter
 		$userid = $root->mContext->mRequest->getRequest('uname');
 
 		if ($userid!=null) {
-			if (!defined('XOOPS_TUIS_AUTH_SERVER') or !defined('XOOPS_TUIS_AUTH_PORT')) {
-				$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_TUIS_AUTH_* is not defined.");
+			if (!defined('XOOPS_JBXL_AUTH_SERVER') or !defined('XOOPS_JBXL_AUTH_PORT')) {
+				$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_JBXL_AUTH_* is not defined.");
 			}
 
 			dl("php_tuis_auth.so");
@@ -48,7 +48,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 				$root->mController->executeRedirect(XOOPS_URL, 3, "php_tuis_asuth.so is not found.");
 			}
 
-			$result = tuis_check_auth(XOOPS_TUIS_AUTH_SERVER, XOOPS_TUIS_AUTH_PORT, $userid, "passwd", 0);
+			$result = tuis_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, "passwd", 0);
 
 			if ($result==1 or $result==2) {
 				$root->mController->executeRedirect(XOOPS_URL.'/register.php', 3, "User is already exist in External.");
@@ -68,8 +68,8 @@ class  User_TuisAuth extends XCube_ActionFilter
 
 		$root   =& XCube_Root::getSingleton();
 
-		if (!defined('XOOPS_TUIS_AUTH_SERVER') or !defined('XOOPS_TUIS_AUTH_PORT')) {
-			$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_TUIS_AUTH_* is not defined.");
+		if (!defined('XOOPS_JBXL_AUTH_SERVER') or !defined('XOOPS_JBXL_AUTH_PORT')) {
+			$root->mController->executeRedirect(XOOPS_URL, 3, "XOOPS_JBXL_AUTH_* is not defined.");
 		}
 
 		dl("php_tuis_auth.so");
@@ -80,7 +80,7 @@ class  User_TuisAuth extends XCube_ActionFilter
 
 		$userid = strtolower(xoops_getrequest('uname'));
 		$passwd = xoops_getrequest('pass');
-		$result = tuis_check_auth(XOOPS_TUIS_AUTH_SERVER, XOOPS_TUIS_AUTH_PORT, $userid, $passwd, 0);
+		$result = tuis_check_auth(XOOPS_JBXL_AUTH_SERVER, XOOPS_JBXL_AUTH_PORT, $userid, $passwd, 0);
 
 		if ($result==1) {		// 外部ユーザ
 			$maddr  = User_TuisAuth::makeMailAddr($userid);

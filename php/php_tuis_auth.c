@@ -2,7 +2,7 @@
   for PHP Version 5/7/8
 */
 
-#define PHP_TUIS_AUTH_VERSION "1.0.0" 
+#define PHP_JBXL_AUTH_VERSION "1.1.0" 
 
 #include "php.h"
 #include "check_auth_bystr.h"
@@ -43,8 +43,8 @@ PHP_FUNCTION(check_auth)
 
     cc = check_auth_bystr(host, (int)port, user, pass, (int)chmode);
     if      (cc==0) ret = 1;
-    else if (cc==JBXL_ISNET_PASSWD_ERROR) ret = 2;
-    else if (cc==JBXL_ISNET_USER_ERROR)   ret = 3;
+    else if (cc==JBXL_JBXL_PASSWD_ERROR) ret = 2;
+    else if (cc==JBXL_JBXL_USER_ERROR)   ret = 3;
     else ret = cc;
 
     RETURN_LONG((long)ret);
@@ -66,7 +66,7 @@ ZEND_END_ARG_INFO()
 /*
 関数名は アンダーバー _ が2個の場合は駄目の様 何で？
 */
-const zend_function_entry php_tuis_auth_functions[] =
+const zend_function_entry php_jbxl_auth_functions[] =
 {
 #ifdef PHP_V7        // for PHP7/8
     PHP_FE(check_auth, check_auth_arginfo)
@@ -77,17 +77,17 @@ const zend_function_entry php_tuis_auth_functions[] =
 };
 
 
-zend_module_entry php_tuis_auth_module_entry =
+zend_module_entry php_jbxl_auth_module_entry =
 {
     STANDARD_MODULE_HEADER,
-    "php_tuis_auth",
-    php_tuis_auth_functions,
-    NULL, //PHP_MINIT(php_tuis_auth),
-    NULL, //PHP_MSHUTDOWN(php_tuis_auth),
-    NULL, //PHP_RINIT(php_tuis_auth),
-    NULL, //PHP_RSHUTDOWN(php_tuis_auth),
-    NULL, //PHP_MINFO(php_tuis_auth),
-    PHP_TUIS_AUTH_VERSION,
+    "php_jbxl_auth",
+    php_jbxl_auth_functions,
+    NULL, //PHP_MINIT(php_jbxl_auth),
+    NULL, //PHP_MSHUTDOWN(php_jbxl_auth),
+    NULL, //PHP_RINIT(php_jbxl_auth),
+    NULL, //PHP_RSHUTDOWN(php_jbxl_auth),
+    NULL, //PHP_MINFO(php_jbxl_auth),
+    PHP_JBXL_AUTH_VERSION,
     STANDARD_MODULE_PROPERTIES
 };
 
@@ -96,6 +96,6 @@ zend_module_entry php_tuis_auth_module_entry =
 ZEND_TSRMLS_CACHE_DEFINE()
 #endif
 
-ZEND_GET_MODULE(php_tuis_auth)
+ZEND_GET_MODULE(php_jbxl_auth)
 
 

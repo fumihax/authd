@@ -29,7 +29,7 @@ int check_auth_bystr(char* host, int port, char* user, char* pass, int chmode)
    
 
 
-MODULE = perl_tuis_auth		PACKAGE = perl_tuis_auth		
+MODULE = perl_jbxl_auth		PACKAGE = perl_jbxl_auth		
 
 
 int

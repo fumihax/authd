@@ -1,4 +1,4 @@
-package perl_tuis_auth;
+package perl_jbxl_auth;
 
 use 5.008002;
 use strict;
@@ -12,7 +12,7 @@ our @ISA = qw(Exporter);
 # names by default without a very good reason. Use EXPORT_OK instead.
 # Do not simply export all your public functions/methods/constants.
 
-# This allows declaration	use perl_tuis_auth ':all';
+# This allows declaration	use perl_jbxl_auth ':all';
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 our %EXPORT_TAGS = ( 'all' => [ qw(
@@ -28,7 +28,7 @@ our @EXPORT = qw(
 our $VERSION = '0.01';
 
 require XSLoader;
-XSLoader::load('perl_tuis_auth', $VERSION);
+XSLoader::load('perl_jbxl_auth', $VERSION);
 
 # Preloaded methods go here.
 
@@ -38,16 +38,16 @@ __END__
 
 =head1 NAME
 
-perl_tuis_auth - Perl extension for blah blah blah
+perl_jbxl_auth - Perl extension for blah blah blah
 
 =head1 SYNOPSIS
 
-  use perl_tuis_auth;
+  use perl_jbxl_auth;
   blah blah blah
 
 =head1 DESCRIPTION
 
-Stub documentation for perl_tuis_auth, created by h2xs. It looks like the
+Stub documentation for perl_jbxl_auth, created by h2xs. It looks like the
 author of the extension was negligent enough to leave the stub
 unedited.
 

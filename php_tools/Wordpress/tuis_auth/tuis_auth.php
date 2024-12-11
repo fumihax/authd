@@ -1,8 +1,8 @@
 ﻿<?php
 /*
-Plugin Name: TUIS Auth
+Plugin Name: JBXL Auth
 Plugin URI: http://www.nsl.tuis.ac.jp/ 
-Description: Login Plugin for TUIS
+Description: Login Plugin for JBXL
 Version: 1.0.1
 Author: Fumi Iseki
 */
@@ -18,7 +18,7 @@ function  tuis_auth_menu()
 
 function  tuis_auth_admin_actions()
 {
-	add_options_page('TUIS Auth', 'TUIS Auth', 10, 'tuis_auth', 'tuis_auth_menu');
+	add_options_page('JBXL Auth', 'JBXL Auth', 10, 'tuis_auth', 'tuis_auth_menu');
 }
 
 

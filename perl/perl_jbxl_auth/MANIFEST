@@ -1,0 +1,8 @@
+Changes
+Makefile.PL
+MANIFEST
+perl_jbxl_auth.xs
+ppport.h
+README
+t/perl_jbxl_auth.t
+lib/perl_jbxl_auth.pm

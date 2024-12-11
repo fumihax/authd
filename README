@@ -2,9 +2,9 @@ Japanese Text Only
 
 　チャレンジ＆レスポンス型認証サーバ（Diffie-Hellman鍵交換対応） Ver. 4.0.0 '11 8/15
 
-                      Copyright (C) 2005 Authd by Fumi.Iseki (TUIS). 
-                                                 http://www.nsl.tuis.ac.jp/
-                                                 mailto:iseki@rsch.tuis.ac.jp
+                      Copyright (C) 2005 Authd by Fumi.Iseki (JBXL). 
+                                                 http://www.nsl.jbxl.ac.jp/
+                                                 mailto:iseki@rsch.jbxl.ac.jp
 
 
 1. 概要
@@ -32,27 +32,27 @@ DH以後の暗号化手法としては，現在の所 AES128CBC, 3DES3CBC をサ
 
 ・クライアントは下記の５種類が用意されている．
 Linuxコマンド： check_auth
-PAMモジュール:  pam_tuis_auth.so 
-Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
-PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)  
-Java関数：      tuis_utilities_for_java (別パッケージ)
+PAMモジュール:  pam_jbxl_auth.so 
+Perlモジュール: perl_jbxl_auth::check_auth  (perl_jbxl_auth.so)
+PHPモジュール:  jbxl_cehck_auth  (php_jbxl_auth.so)  
+Java関数：      jbxl_utilities_for_java (別パッケージ)
 
 Linuxコマンド： check_auth
 　このクライアントを使用して認証を行なった場合，成功すると"ok" を標準出力に出力する．
 ユーザが存在しない場合には "nu"を，認証に失敗した場合は"ng"を，その他のエラーの場合
 には"err"をそれぞれ出力する．
 
-PAMモジュール:  pam_tuis_auth.so 
+PAMモジュール:  pam_jbxl_auth.so 
 　PAM用モジュール．ユーザ認証にのみ使用可能であり，パスワード変更等には対応していない．
 　Linux以外への移植性はそれ程高くない．
 
-Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
+Perlモジュール: perl_jbxl_auth::check_auth  (perl_jbxl_auth.so)
 　Perlから呼び出し可能な外部モジュール．移植性はそれ程高くない(Perlのバージョンにも依存)．
 
-PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)
+PHPモジュール:  jbxl_cehck_auth  (php_jbxl_auth.so)
 　PHPから呼び出し可能な外部モジュール．PHPのソースが必要．
 
-Java関数： tuis_utilities_for_java (別パッケージ)
+Java関数： jbxl_utilities_for_java (別パッケージ)
 　このプログラムをダウンロードしたサイト(オリジナルサイト)にアップロードされているはず．  
 
 
@@ -100,18 +100,18 @@ check_auth  -h host_name[:port] -u userid -p passwd [-s] [-m] [-d]
 　　　　　　"err" : その他のエラー
 
 
-■ pam_tuis_auth.so: 認証用PAMモジュール
+■ pam_jbxl_auth.so: 認証用PAMモジュール
 
 Linixの場合
 
   /lib/security にコピーし（make installでコピーされる），/etc/pam.d/system-auth の
   auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
        を
-  auth        sufficient    /lib/security/$ISA/pam_tuis_auth.so authd.tuis.ac.jp:9000  on  /lib/security/authd.remote  REMOTE
+  auth        sufficient    /lib/security/$ISA/pam_jbxl_auth.so authd.jbxl.ac.jp:9000  on  /lib/security/authd.remote  REMOTE
 
 のように書き換える．
 
-　ここで authd.tuis.ac.jp:9000 は認証サーバのFQDNとポート番号である．また on はチャレンジキーの使用を指定する．
+　ここで authd.jbxl.ac.jp:9000 は認証サーバのFQDNとポート番号である．また on はチャレンジキーの使用を指定する．
 チャレンジキーを使用しない場合は on 以外の文字列を指定する（例えば off）.
 /lib/security/authd.remote は，このモジュールでの例外ユーザ(後述)を，一行に一ユーザで記述してある．REMOTE は例外ユーザの種類を示す．
 
@@ -131,10 +131,10 @@ Linixの場合
   PAMの設定に失敗すると rootになれなくなる可能性があるので，必ず rootのシェルを起動した状態でテストを行うこと．
 
 
-■ Perlモジュール: perl_tuis_auth::check_auth  (perl_tuis_auth.so)
+■ Perlモジュール: perl_jbxl_auth::check_auth  (perl_jbxl_auth.so)
 
-  use  perl_tuis_auth;
-  $ret = perl_tuis_auth::check_auth("auth_server", port, "userid", "passwd", chmode);
+  use  perl_jbxl_auth;
+  $ret = perl_jbxl_auth::check_auth("auth_server", port, "userid", "passwd", chmode);
 
   auth_server: サーバ名
   port: サーバのポート番号(int)
@@ -150,10 +150,10 @@ Linixの場合
   このモジュールは通信を DHキーを利用して必ず暗号化する．暗号化方式は AES128CBC．
 
 
-■ PHPモジュール:  tuis_cehck_auth  (php_tuis_auth.so)
+■ PHPモジュール:  jbxl_cehck_auth  (php_jbxl_auth.so)
 
-  dl("php_tuis_auth.so");
-  $ret = tuis_check_auth("auth_server", port, "userid", "passwd", chmode);
+  dl("php_jbxl_auth.so");
+  $ret = jbxl_check_auth("auth_server", port, "userid", "passwd", chmode);
 
   auth_server: サーバ名
   port: サーバのポート番号(int)

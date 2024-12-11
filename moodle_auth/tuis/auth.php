@@ -80,7 +80,6 @@ class auth_plugin_tuis extends auth_plugin_base {
             return true;
         } 
 		else if ($ret==2) { 	// ユーザは存在するが，パスワードが一致しない
-			// Register for TUIS
         	// $ret = check_auth($host, $port, 'xxxxx', $password, 0);
         	// if ($ret===1) return true;
 
