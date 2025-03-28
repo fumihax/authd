@@ -10,18 +10,17 @@ How to INSTALL
 0. 準備
   JunkBox_Lib と Authd を同じディレクトリで展開
   コンパイルは一般ユーザでも可能だが，インストールは rootになる必要がある．
-  JunkBox_Lib は展開されると，実際のディレクトリの他に JunkBox_Lib というシンボリックリンク
-  も展開される．
 
-  zcat jbxl_lib-X.Y.Z.tgz | tar xfv -
-  zcat authd-X.Y.Z.tgz | tar xfv -
+  git clone https://github.com/JunkBox-Library/JunkBox_Lib.git
+  git clone https://github.com/fumihax/authd.git
 
 
 
 1. JunkBox_Lib のコンパイル
 
-  cd JunkBox_Lib               # シンボリックリンク JunkBox_Lib も展開されるはず
-  ./configure
+  cd JunkBox_Lib
+  ./config.sh
+  ./configure --enable-ssl --enable-ldap
   make
   cd ..
 
@@ -32,8 +31,10 @@ How to INSTALL
 
 2. Authd のコンパイル 
 
-  cd authd-X.Y.Z
-  ./configure [オプション]
+  php/perl モジュールをコンパイルする場合はそれぞれの開発環境を予めインストールする
+  cd authd
+  ./config.sh
+  ./configure [オプション]　　　例：./configure --enable-debug  --enable-ldap --enable-php --enable-perl
   make
   make install
 
@@ -44,13 +45,13 @@ How to INSTALL
 
     --enable-perl     Perlモジュールも作成する．
 
-    --enable-php=DIR  PHPモジュールも作成する．DIRにはPHPのソースのトップディレクトリを指定する．
-　　　　　　　　　　　DIRは必ず指定する．
+    --enable-php=DIR  PHPモジュールも作成する．
+                    予めPHPの開発環境がインストールされていない場合，DIRにはPHPのソースのトップディレクトリを指定する．
 
-    --enable-ssl=DIR  システムが openSSLのディレクトリを認識できない場合に手動で指定する．DIRの
-　　　　　　　　　　　ディレクトリのデフォルトは /usr
+    --enable-ssl=DIR  システムが openSSLのディレクトリを認識できない場合に手動で指定する．
+　　　　　　　　　　　DIRのディレクトリのデフォルトは /usr
 
-	--enable-ldap=DIR OpenLDAP機能（ADを利用したLDAPで認証する機能）を有効にする
+    --enable-ldap=DIR OpenLDAP機能（ADを利用したLDAPで認証する機能）を有効にする
                       この場合，JunkBox_Lib も --enable-ldap オプションを付けて configureされていなければならない．
 　　　　　　　　　　　ディレクトリのデフォルトは /usr
 
@@ -60,6 +61,7 @@ How to INSTALL
 　　　また，PAMモジュールは /lib/security にインストールされる．
 　　　Perlモジュールはシステムの専用ディレクトリに自動でインストールされる．
   　　PHP は make install を行っても自動ではインストールされない．手動でコピーすること．
+　　　　　例：cp -p php/php_jbxl_auth.so /usr/lib64/php/modules/
  
 
 2-1. 例）Linuxコマンド＆Perlクライアント（Pelモジュール）のコンパイル
