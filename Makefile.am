@@ -48,12 +48,16 @@ all: $(TARGET)
 install: $(SUBJ)
 	$(INSTALL_PROGRAM) -m 4755 authd  /usr/local/bin
 	$(INSTALL_PROGRAM) -m 0755 check_auth  /usr/local/bin
+	mkdir -p /etc/init.d
 	$(INSTALL_PROGRAM) -m 0755 conf/authd.init  /etc/init.d/authd
 	mkdir -p /var/run
 	mkdir -p /usr/local/etc/authd
 	chmod  0700 /usr/local/etc/authd
 if ENABLE_PAM
 	$(INSTALL_PROGRAM) -m 0755 pam_jbxl_auth.so /lib/security/
+endif
+if ENABLE_PHP
+	$(INSTALL_PROGRAM) -m 0755 php/php_mmjbxl_auth.so /usr/lib64/php/modules/
 endif
 if ENABLE_PERL
 	(cd perl && make install)
