@@ -60,8 +60,6 @@ How to INSTALL
   　　Linuxコマンドは /usr/local/bin にインストールされる．
 　　　また，PAMモジュールは /lib/security にインストールされる．
 　　　Perlモジュールはシステムの専用ディレクトリに自動でインストールされる．
-  　　PHP は make install を行っても自動ではインストールされない．手動でコピーすること．
-　　　　　例：cp -p php/php_jbxl_auth.so /usr/lib64/php/modules/
  
 
 2-1. 例）Linuxコマンド＆Perlクライアント（Pelモジュール）のコンパイル
