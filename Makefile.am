@@ -57,7 +57,7 @@ if ENABLE_PAM
 	$(INSTALL_PROGRAM) -m 0755 pam_jbxl_auth.so /lib/security/
 endif
 if ENABLE_PHP
-	$(INSTALL_PROGRAM) -m 0755 php/php_mmjbxl_auth.so /usr/lib64/php/modules/
+	$(INSTALL_PROGRAM) -m 0755 php/php_jbxl_auth.so /usr/lib64/php/modules/
 endif
 if ENABLE_PERL
 	(cd perl && make install)
