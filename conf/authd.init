@@ -12,7 +12,8 @@ CPORT=9000
 
 #起動オプション
 #OPTIONS=-d
-OPTIONS="-m -s"
+#OPTIONS="-m -s"
+OPTIONS="-l"
 
 
 PROG=authd
